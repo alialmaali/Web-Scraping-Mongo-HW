@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Mission To Mars</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <style>
+
+    td, th {
+
+      border: 1px solid #ddd;
+
+      padding-left: 15px;
+
+      padding-right: 15px;
+
+    }
+
+    th {
+
+      background-color: aliceblue;
+
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+  <div class="container">
+
+    <div class="jumbotron text-center">
+
+      <h1>Mission To Mars</h1>
+
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrap New Data</a></p>
+
+    </div>
+
+  </div>
+
+    <div class="container text-center">
+
+      <div>
+
+        <div class="container text-left">
+
+          <h2>Latest Mars News</h2>
+
+          <h3>{{ mars_info.mars_news[0].news_title }}</h3>
+
+          <h4>{{ mars_info.mars_news[0].news_body }}</h4>
+
+
+
+      <div class="col-lg-7" style="border:0px solid black;">
+
+            {% for item in mars_info.mars_news %}
+
+            <div>
+
+               <h2>Featured Mars Image</h2>
+
+              <a href="{{ item.news_link}}" target="_blank"><img style="float:left;width:600px;" src="{{ item.news_image }}"/></a>
+
+            </div>
+
+            {% endfor %}
+
+          </div>
+
+          <div class="col-lg-5" style="border:0px solid black;">
+
+            <div class="thumbnail" style="width: 30rem;">
+
+              <div class="card-body">
+
+            <h4>Current Wather on Mars</h4>
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>Date</th>
+
+                  <th>{{ mars_info.mars_weather[0]["Date"] }}</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+
+                  <td>High</td>
+
+                  <td>{{ mars_info.mars_weather[0]["High"] }}</td>
+
+                </tr>
+
+                <tr>
+
+                  <td>Low</td>
+
+                  <td>{{ mars_info.mars_weather[0]["Low"] }}</td>
+
+                </tr>
+
+                <tr>
+
+                  <td>Pressure (hPa)</td>
+
+                  <td>{{ mars_info.mars_weather[0]["Pressure (hPa)"] }}</td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+            </div>
+
+          </div>
+
+          </div>
+
+          <div class="col-lg-5">
+
+            <h4>Mars Facts</h4>
+
+            <table border="1" class="dataframe">
+
+              <thead>
+
+                <tr style="text-align: right;">
+
+                  <th>Description</th>
+
+                  <th>Value</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                {% for item in mars_info.mars_facts2 %}
+
+                <tr>
+
+                  <td>{{ item[0] }}</td>
+
+                  <td>{{ item[1] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+              </tbody>
+
+            </table>
+
+            
+
+          
+
+          </div>
+
+          <div class="col-lg-12" style="border:0px solid black;">
+
+            <h2 style="text-align: center;">Mars Hemispheres</h2>
+
+            <hr />
+
+            {% for item in mars_info.mars_hemisphere %}
+
+            <div class="col-lg-6 thumbnail">
+
+              <a href="{{ item.link}}" target="_blank"><img style="float:none;" width="450" src="{{ item.full_image }}"/></a>
+
+              <br /><h4 style="text-align:center;">{{ item.title}}</h4>
+
+            </div>
+
+            {% endfor %}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+</body>
+
+
+
+</html>
